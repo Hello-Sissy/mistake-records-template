@@ -361,13 +361,16 @@ def inline_markdown_images(md_text: str, base_dir: str) -> tuple[str, list[str]]
     def repl(match: re.Match) -> str:
         alt, path = match.group(1), match.group(2).strip()
         if path.startswith(("data:", "http://", "https://")):
-            return match.group(0)
-        abs_path = os.path.normpath(os.path.join(base_dir, path))
-        uri = _file_to_data_uri(abs_path)
-        if not uri:
-            missing.append(abs_path)
-            return match.group(0)
-        return f"![{alt}]({uri})"
+            uri = path
+        else:
+            abs_path = os.path.normpath(os.path.join(base_dir, path))
+            uri = _file_to_data_uri(abs_path)
+            if not uri:
+                missing.append(abs_path)
+                return match.group(0)
+        # Markdown inside a raw HTML q-item is left untouched by Python-Markdown.
+        # Emit HTML directly so an original-question image prints there as well.
+        return f'<img src="{_escape_html(uri)}" alt="{_escape_html(alt)}">'
 
     return re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", repl, md_text), missing
 
