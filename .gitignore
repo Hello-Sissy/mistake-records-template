@@ -1,0 +1,33 @@
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.pytest_cache/
+.cursor/
+
+# Generated pages and PDFs stay on each user's computer.
+*.html
+!错题记录/02_自定义组卷/_exam_template.html
+!错题记录/02_自定义组卷/_snippets/*.html
+*.pdf
+
+# Personal records; keep only empty directory markers in the shared template.
+错题记录/01_错题库/**
+!错题记录/01_错题库/.gitkeep
+错题记录/02_自定义组卷/未完成/**
+!错题记录/02_自定义组卷/未完成/.gitkeep
+错题记录/02_自定义组卷/已完成/**
+!错题记录/02_自定义组卷/已完成/.gitkeep
+错题记录/assets/images/**
+!错题记录/assets/images/.gitkeep
+错题记录/错题原题/
+错题记录/05_已做的组卷/
+
+# Personal configuration, vocabulary and review state are created locally.
+/使用者配置.md
+/错题记录/00_复习全局看板.md
+/错题记录/03_英语默写/专有名词词表.md
+/错题记录/03_英语默写/句子词表.md
+/错题记录/03_英语默写/短语词表.md
+/错题记录/03_英语默写/词性转换词表.md
+/错题记录/04_语文默写清单/默写词表.md
